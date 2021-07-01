@@ -155,15 +155,15 @@ int controller_ListLibro(LinkedList* pArrayListeLibro)
 
 int controller_ordenar(LinkedList* this)
 {
-
+	int rtn =0;
 	int (*pFunc)(void*, void*);
 	pFunc = &controller_ordenarPorAutor;
 	if(this != NULL && pFunc != NULL)
 	{
 		ll_sort(this, pFunc, 0);
-
+		rtn =1;
 	}
-	return 1;
+	return rtn;
 }
 
 
@@ -189,15 +189,15 @@ int controller_ordenarPorAutor(void* libroUno, void* libroDos)
 
 int controller_descuento(LinkedList* this)
 {
-
+	int rtn =0;
 	void (*pFunc)(void*);
 	pFunc = &controller_calcularDescuento;
 	if(this != NULL && pFunc != NULL)
 	{
 		ll_map(this, pFunc);
-
+		rtn=1;
 	}
-	return 1;
+	return rtn;
 }
 
 void controller_calcularDescuento(void* pElement)
