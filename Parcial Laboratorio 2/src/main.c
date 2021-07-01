@@ -40,8 +40,8 @@ int main()
 			"3. Imprimir\n"
 			"4. Descuentos\n"
 			"5. Generar 'mapeado.csv' con descuentos\n"
-			"10. Salir\n");
-    	option = Get_IntRange("INICIE EL MENU: ", "ERROR. REINGRESE: ", 1, 10);
+			"0. Salir\n");
+    	option = Get_IntRange("INICIE EL MENU: ", "ERROR. REINGRESE: ", 0, 7);
 		switch(option)
         {
             case 1:
@@ -61,32 +61,30 @@ int main()
                 break;
             case 2:
             	if(ll_len(listaLibros)>0 && listaLibros!=NULL){
-					int (*pFunc)(void*, void*);
-					pFunc = &controller_ordenarPorAutor;
-					ll_sort(listaLibros, pFunc, 0);
+            		controller_ordenar(listaLibros);
 				}else{
-					puts("DEBE CARGAR UNA LISTA DE Libros");
+					puts("DEBE CARGAR UNA LISTA DE LIBROS");
 				}
             	break;
             case 3:
             	if(ll_len(listaLibros)>0 && listaLibros!=NULL){
             		controller_ListLibro(listaLibros);
             	}else{
-            		puts("DEBE CARGAR UNA LISTA DE Libros");
+            		puts("DEBE CARGAR UNA LISTA DE LIBROS");
             	}
             	break;
             case 4:
             	if(ll_len(listaLibros)>0 && listaLibros!=NULL){
             		controller_descuento(listaLibros);
             	}else{
-            		puts("DEBE CARGAR UNA LISTA DE Libros");
+            		puts("DEBE CARGAR UNA LISTA DE LIBROS");
             	}
             	break;
             case 5:
             	if(ll_len(listaLibros)>0 && listaLibros!=NULL){
             		controller_saveAsText("mapeado.csv", listaLibros);
             	}else{
-            		puts("DEBE CARGAR UNA LISTA DE Libros");
+            		puts("DEBE CARGAR UNA LISTA DE LIBROS");
             	}
             	break;
             case 6:
@@ -94,37 +92,24 @@ int main()
             		if(controller_Filter(listaLibros))
             			puts("SE FILTRO CON EXITO");
             	}else{
-            		puts("DEBE CARGAR UNA LISTA DE Libros");
+            		puts("DEBE CARGAR UNA LISTA DE LIBROS");
             	}
             	break;
             case 7:
-            	controller_count(listaLibros);
-            	break;
-            case 10:
             	if(ll_len(listaLibros)>0 && listaLibros!=NULL){
-//            		if(flagGuardado!=1){
-//            			if(Validate_Exit_SN("DESEA SALIR SIN GUARDAR? [S]-SI  [N]-NO", "ERROR. REINGRESE: ")){
-//							ll_deleteLinkedList(listaLibros);
-//            				option =10;
-//						}else{
-//
-//					    	Menu("\n=================================================================================\n"
-//								 "                                     MENU                                        \n"
-//								 "=================================================================================\n"
-//								"1. Cargar los datos de los Libros desde el archivo Datos.csv (modo texto).\n"
-//								"6. Imprimir\n"
-//								"4. Odenar\n"
-//								"10. Salir\n");
-//							option = Get_IntRange("INICIE EL MENU: ", "ERROR. REINGRESE: ", 1, 10);
-//						}
-//            		}else{
-					option =10;
+            		controller_count(listaLibros);
+            	}else{
+            		puts("DEBE CARGAR UNA LISTA DE LIBROS");
+            	}
+            	break;
+            case 0:
+            	if(ll_len(listaLibros)>0 && listaLibros!=NULL){
+					option =0;
 					ll_deleteLinkedList(listaLibros);
-//            		}
             	}
             	break;
         }
-    }while(option != 10);
+    }while(option != 0);
     puts("GRACIAS POR USAR EL PROGRAMA!");
     return 0;
 }

@@ -7,7 +7,7 @@ int controller_ListLibro(LinkedList* pArrayListLibro);
 int controller_sortLibro(LinkedList* pArrayListLibro);
 int controller_saveAsText(char* path , LinkedList* pArrayListLibro);
 int controller_saveAsBinary(char* path , LinkedList* pArrayListLibro);
-
+int controller_ordenar(LinkedList* this);
 int controller_ordenarPorAutor(void* libroUno, void* LibroDos);
 int controller_descuento(LinkedList* this);
 void controller_calcularDescuento(void* pElement);

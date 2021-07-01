@@ -153,7 +153,18 @@ int controller_ListLibro(LinkedList* pArrayListeLibro)
     return rtn;
 }
 
+int controller_ordenar(LinkedList* this)
+{
 
+	int (*pFunc)(void*, void*);
+	pFunc = &controller_ordenarPorAutor;
+	if(this != NULL && pFunc != NULL)
+	{
+		ll_sort(this, pFunc, 0);
+
+	}
+	return 1;
+}
 
 
 int controller_ordenarPorAutor(void* libroUno, void* libroDos)
@@ -164,9 +175,7 @@ int controller_ordenarPorAutor(void* libroUno, void* libroDos)
 	if(libroUno != NULL && libroDos != NULL)
 	{
 		eLibro_getAutor((eLibro*)libroUno, auxAutorUno);
-		printf("El autorUno es: %s\n", auxAutorUno);
 		eLibro_getAutor((eLibro*)libroDos, auxAutorDos);
-		printf("El autorDos es: %s\n", auxAutorDos);
 		if(strcmp(auxAutorDos, auxAutorUno)>0)
 		{
 			rtn=1;
